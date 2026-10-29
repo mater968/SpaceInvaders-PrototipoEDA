@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Invaders EDA</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #000; }
+      #juego { display: flex; align-items: center; justify-content: center; height: 100%; }
+
+      .capa { position: fixed; inset: 0; z-index: 10; overflow-y: auto; background: rgba(0, 0, 0, 0.92);
+        font: 17px/1.5 system-ui, sans-serif; color: #f1f1f1; }
+      .panel { max-width: 720px; margin: 24px auto; padding: 20px 24px; background: #12161f; border: 1px solid #2c3445; border-radius: 8px; }
+      .panel h1 { margin: 0 0 12px; font-size: 24px; color: #7cfc00; }
+      .panel p { margin: 0 0 12px; }
+      fieldset { margin: 0 0 14px; padding: 12px 14px; border: 1px solid #2c3445; border-radius: 6px; }
+      fieldset.falta { border-color: #ff6b6b; background: #2a1414; }
+      legend { padding: 0 4px; font-weight: 600; }
+      .num { color: #9aa4b8; }
+      .opciones-col { display: grid; gap: 6px; }
+      .opcion { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+      .escala { display: flex; justify-content: space-between; gap: 4px; margin-top: 6px; }
+      .punto { flex: 1; text-align: center; cursor: pointer; }
+      .punto input { display: block; margin: 0 auto 2px; width: 20px; height: 20px; }
+      .anclas { display: flex; justify-content: space-between; color: #b8c0d0; font-size: 15px; margin-top: 4px; }
+      input[type=number], textarea { width: 100%; box-sizing: border-box; padding: 8px; font: inherit; color: #fff; background: #0b0e14; border: 1px solid #4a5468; border-radius: 4px; }
+      input[type=number] { max-width: 140px; }
+      button { font: inherit; font-weight: 600; padding: 10px 18px; color: #000; background: #7cfc00; border: 0; border-radius: 6px; cursor: pointer; }
+      button.secundario { color: #f1f1f1; background: #3a4357; }
+      button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #ffd60a; outline-offset: 2px; }
+      .botones { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+      .error { color: #ff8a8a; min-height: 1.5em; }
+      .nivel { text-align: center; }
+      .progreso { color: #9aa4b8; }
+      .enunciado { font-size: 22px; font-weight: 600; min-height: 3em; }
+      .teclas { display: flex; justify-content: center; gap: 8px; }
+      .teclas button { width: 52px; height: 52px; padding: 0; font-size: 22px; color: #f1f1f1; background: #2c3445; }
+      .teclas button:hover { background: #4361ee; }
+      .nivel .anclas { max-width: 430px; margin: 8px auto 12px; }
+      .ayuda { color: #9aa4b8; font-size: 15px; }
+      .codigo { font-family: monospace; font-size: 22px; color: #ffd60a; letter-spacing: 2px; }
+    </style>
+  </head>
+  <body>
+    <div id="juego"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
