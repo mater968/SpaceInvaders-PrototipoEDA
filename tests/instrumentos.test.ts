@@ -10,7 +10,7 @@ describe('encuesta por nivel', () => {
   });
 });
 
-describe('post test', () => {
+describe('cuestionario final', () => {
   it('aplica 3 constructos del PXI con 3 ítems cada uno y la pregunta de control en el puesto 7', () => {
     expect(POSTEST_PXI).toHaveLength(10);
     expect(POSTEST_PXI[6]).toBe(CONTROL);

@@ -4,9 +4,9 @@ export const CONSENTIMIENTO = {
   titulo: 'Consentimiento informado',
   parrafos: [
     'Te invitamos a participar en el estudio «Generación procedural de oleadas con EDA: experiencia y usabilidad en jugadores universitarios», del curso Seminario de Investigación I de la Universidad de Lima, a cargo de César Alexander Porras Peña.',
-    'Si aceptas, responderás un breve formulario de perfil, jugarás cinco niveles de un videojuego de disparos y, al terminar cada nivel, contestarás cinco preguntas rápidas. Al final responderás dos cuestionarios sobre tu experiencia. La sesión dura aproximadamente [DURACIÓN: completar tras la prueba piloto].',
+    'Si aceptas, responderás un breve formulario para confirmar que cumples los requisitos del estudio, jugarás cinco niveles de un videojuego de disparos y, al terminar cada nivel, contestarás cinco preguntas rápidas. Al final responderás un cuestionario sobre tu experiencia con el juego. La sesión dura aproximadamente [DURACIÓN: completar tras la prueba piloto].',
     'Tu participación es voluntaria y puedes abandonar en cualquier momento cerrando la página. No se registran tu nombre, tu correo ni otros datos que te identifiquen: el juego genera un código anónimo que acompaña tus respuestas y tu desempeño. Los datos se usarán solo con fines académicos.',
-    'Para consultas, escribe a [CORREO DE CONTACTO].',
+    'Para consultas, escribe a 20194458@aloe.ulima.edu.pe.',
   ],
 };
 

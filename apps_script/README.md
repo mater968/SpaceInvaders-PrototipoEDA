@@ -32,7 +32,7 @@ Usa **Implementar > Gestionar implementaciones > Editar > Nueva versión**. Así
 1. En **Extensiones > Apps Script**, pulsa **+ > Secuencia de comandos**, llámalo `Separar` y pega el contenido de `Separar.gs`. Guarda.
 2. Recarga la hoja de cálculo. Aparece el menú **Datos > Separar y limpiar datos** (la primera vez pide autorizar).
 3. El script crea o rehace dos pestañas y no toca `registros`:
-   - `resultados`: una fila por participante, con el pre test, el desempeño y la encuesta de cada nivel (`n1_` a `n5_`), el PXI, el SUS y la pregunta abierta.
+   - `resultados`: una fila por participante, con el tamizaje, el desempeño y la encuesta de cada nivel (`n1_` a `n5_`), el PXI, el SUS y la pregunta abierta.
    - `tecnico`: una fila por participante y nivel, con navegador, sistema operativo, pantalla, tiempo de carga, oleada, formación, semilla, generación y FPS. Los excluidos aparecen aquí solo con su motivo.
 4. Descarta las filas `-dev`, las de prueba y las duplicadas por reenvío. Sí/no se escribe como 1/0. `valido = 1` marca a quien completó todo y acertó la pregunta de control.
 
