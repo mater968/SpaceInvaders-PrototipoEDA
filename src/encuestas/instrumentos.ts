@@ -12,7 +12,7 @@ export const CONSENTIMIENTO = {
 
 const SINO: [string, string][] = [['si', 'Sí'], ['no', 'No']];
 
-export const PRETEST: Pregunta[] = [
+export const TAMIZAJE: Pregunta[] = [
   { id: 'edad', tipo: 'numero', texto: '¿Cuántos años tienes?', min: 10, max: 99 },
   { id: 'universitario', tipo: 'unica', texto: '¿Eres estudiante universitario actualmente?', opciones: SINO },
   {
@@ -63,7 +63,7 @@ export const CONTROL: Pregunta = {
 };
 export const RESPUESTA_CONTROL = 2;
 
-export const POSTEST_PXI: Pregunta[] = [...ITEMS_PXI.slice(0, 6), CONTROL, ...ITEMS_PXI.slice(6)];
+export const FINAL_PXI: Pregunta[] = [...ITEMS_PXI.slice(0, 6), CONTROL, ...ITEMS_PXI.slice(6)];
 
 export const INSTRUCCION_SUS =
   'Por favor seleccione de cada uno de los enunciados la opción que mejor describa su experiencia con el juego. '
@@ -83,11 +83,11 @@ const ITEMS_SUS = [
   'Necesité saber bastantes cosas antes de poder empezar a usar este juego.',
 ];
 
-export const POSTEST_SUS: Pregunta[] = ITEMS_SUS.map((texto, i): Pregunta => ({
+export const FINAL_SUS: Pregunta[] = ITEMS_SUS.map((texto, i): Pregunta => ({
   id: `sus_${i + 1}`, tipo: 'escala', texto, min: 1, max: 5, anclas: ['Totalmente en desacuerdo', 'Totalmente de acuerdo'],
 }));
 
-export const POSTEST_ABIERTA: Pregunta[] = [{
+export const FINAL_ABIERTA: Pregunta[] = [{
   id: 'abierta', tipo: 'abierta', opcional: true,
   texto: '¿Qué te pareció la experiencia de juego? Cuéntanos qué te gustó y qué cambiarías.',
 }];

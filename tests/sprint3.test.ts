@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { POSTEST_SUS } from '../src/encuestas/instrumentos';
+import { FINAL_SUS } from '../src/encuestas/instrumentos';
 import { promediosPxi, puntajeSus } from '../src/encuestas/puntajes';
 import { densidad } from '../src/generador/oleada';
 import { OLEADAS_CONTROL } from '../src/generador/oleadasControl';
@@ -52,8 +52,8 @@ describe('promediosPxi', () => {
 
 describe('SUS en español', () => {
   it('tiene 10 ítems con texto definitivo, escala de 1 a 5 y adaptado a «juego»', () => {
-    expect(POSTEST_SUS).toHaveLength(10);
-    for (const p of POSTEST_SUS) {
+    expect(FINAL_SUS).toHaveLength(10);
+    for (const p of FINAL_SUS) {
       expect(p.texto).not.toMatch(/pendiente|herramienta/i);
       expect(p.texto).toMatch(/juego/);
       expect(p).toMatchObject({ tipo: 'escala', min: 1, max: 5 });

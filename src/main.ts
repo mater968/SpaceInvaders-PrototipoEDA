@@ -4,7 +4,7 @@ import {
   consentimiento, encuestaNivel, formulario, pantallaFinal, type Respuestas,
 } from './encuestas/formulario';
 import {
-  CONSENTIMIENTO, INSTRUCCION_SUS, ITEMS_NIVEL, POSTEST_ABIERTA, POSTEST_PXI, POSTEST_SUS, PRETEST, RESPUESTA_CONTROL,
+  CONSENTIMIENTO, INSTRUCCION_SUS, ITEMS_NIVEL, FINAL_ABIERTA, FINAL_PXI, FINAL_SUS, TAMIZAJE, RESPUESTA_CONTROL,
 } from './encuestas/instrumentos';
 import { promediosPxi, puntajeSus } from './encuestas/puntajes';
 import { densidad, dificultad, type Oleada } from './generador/oleada';
@@ -98,14 +98,14 @@ async function estudio(cargaMs: number) {
   }
   const grupo = asignarGrupo();
 
-  const pre = await enFormulario(() => formulario('Antes de empezar', 'Cuéntanos un poco sobre ti y tus hábitos de juego.', PRETEST));
-  if (Number(pre.edad) < 18 || pre.universitario !== 'si') {
-    void registrar('excluido', { motivo: Number(pre.edad) < 18 ? 'menor_de_edad' : 'no_universitario' });
+  const perfil = await enFormulario(() => formulario('Antes de empezar', 'Cuéntanos un poco sobre ti y tus hábitos de juego.', TAMIZAJE));
+  if (Number(perfil.edad) < 18 || perfil.universitario !== 'si') {
+    void registrar('excluido', { motivo: Number(perfil.edad) < 18 ? 'menor_de_edad' : 'no_universitario' });
     mensajeFinal(['Este estudio es solo para estudiantes', 'universitarios mayores de 18 años.', '', 'Ya puedes cerrar esta página.']);
     return;
   }
   void registrar('sesion', { grupo, carga_ms: cargaMs, pantalla: `${screen.width}x${screen.height}` });
-  void registrar('pretest', pre);
+  void registrar('tamizaje', perfil);
 
   let siguiente = prepararOleada(grupo, 1, D1);
   await mensaje('SPACE INVADERS EDA', [
@@ -153,29 +153,29 @@ async function estudio(cargaMs: number) {
   const pxi = await enFormulario(() => formulario(
     'Tu experiencia con el juego (1 de 3)',
     'Indica qué tan de acuerdo estás con cada afirmación, de −3 (totalmente en desacuerdo) a +3 (totalmente de acuerdo).',
-    POSTEST_PXI,
+    FINAL_PXI,
   ));
   const sus = await enFormulario(() => formulario(
     'Facilidad de uso (2 de 3)',
     INSTRUCCION_SUS,
-    POSTEST_SUS,
+    FINAL_SUS,
   ));
-  const abierta = await enFormulario(() => formulario('Para terminar (3 de 3)', '', POSTEST_ABIERTA, 'Enviar respuestas'));
+  const abierta = await enFormulario(() => formulario('Para terminar (3 de 3)', '', FINAL_ABIERTA, 'Enviar respuestas'));
 
   const pxiItems = Object.fromEntries(Object.entries(pxi).filter(([k]) => k.startsWith('pxi_'))) as Record<string, number>;
-  const post: Respuestas | Record<string, unknown> = {
+  const final: Respuestas | Record<string, unknown> = {
     ...pxi,
     ...sus,
     ...abierta,
     control_ok: pxi.control === RESPUESTA_CONTROL,
-    sus_puntaje: puntajeSus(POSTEST_SUS.map((p) => Number(sus[p.id]))),
+    sus_puntaje: puntajeSus(FINAL_SUS.map((p) => Number(sus[p.id]))),
     pxi_promedios: promediosPxi(pxiItems),
   };
 
-  let postEnviado = false;
+  let finalEnviado = false;
   await enFormulario(() => pantallaFinal(CODIGO, async () => {
-    postEnviado ||= await registrar('postest', post);
-    return postEnviado && (await reenviarPendientes());
+    finalEnviado ||= await registrar('cuestionario_final', final);
+    return finalEnviado && (await reenviarPendientes());
   }));
 }
 
