@@ -1,6 +1,6 @@
 export type Pregunta =
-  | { id: string; tipo: 'numero'; texto: string; min: number; max: number }
-  | { id: string; tipo: 'unica'; texto: string; opciones: [string, string][] }
+  | { id: string; tipo: 'numero'; texto: string; min: number; max: number; desplegable?: boolean }
+  | { id: string; tipo: 'unica'; texto: string; opciones: [string, string][]; desplegable?: boolean }
   | { id: string; tipo: 'multiple'; texto: string; opciones: [string, string][] }
   | { id: string; tipo: 'escala'; texto: string; min: number; max: number; anclas: [string, string] }
   | { id: string; tipo: 'abierta'; texto: string; opcional?: boolean };
@@ -18,8 +18,18 @@ function abrirCapa(html: string): HTMLDivElement {
   return capa;
 }
 
+function htmlDesplegable(id: string, texto: string, opciones: [string, string][]): string {
+  const ops = opciones.map(([v, e]) => `<option value="${v}">${esc(e)}</option>`).join('');
+  return `<select name="${id}" aria-label="${esc(texto)}"><option value="" selected disabled>Selecciona una opción</option>${ops}</select>`;
+}
+
 function htmlPregunta(p: Pregunta, i: number): string {
   const leyenda = `<legend><span class="num">${i + 1}.</span> ${esc(p.texto)}</legend>`;
+  if (p.tipo === 'numero' && p.desplegable) {
+    const ops = Array.from({ length: p.max - p.min + 1 }, (_, k): [string, string] => [`${p.min + k}`, `${p.min + k}`]);
+    return `<fieldset data-id="${p.id}">${leyenda}${htmlDesplegable(p.id, p.texto, ops)}</fieldset>`;
+  }
+  if (p.tipo === 'unica' && p.desplegable) return `<fieldset data-id="${p.id}">${leyenda}${htmlDesplegable(p.id, p.texto, p.opciones)}</fieldset>`;
   switch (p.tipo) {
     case 'numero':
       return `<fieldset data-id="${p.id}">${leyenda}<input type="number" name="${p.id}" min="${p.min}" max="${p.max}" inputmode="numeric" aria-label="${esc(p.texto)}"></fieldset>`;
@@ -78,7 +88,7 @@ export function formulario(titulo: string, intro: string, preguntas: Pregunta[],
     );
     const form = capa.querySelector('form')!;
     const error = capa.querySelector<HTMLElement>('.error')!;
-    form.querySelector<HTMLElement>('input, textarea')?.focus();
+    form.querySelector<HTMLElement>('input, select, textarea')?.focus();
     form.addEventListener('submit', (ev) => {
       ev.preventDefault();
       const { respuestas, faltan } = leerRespuestas(form, preguntas);

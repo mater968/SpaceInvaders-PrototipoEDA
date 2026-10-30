@@ -13,10 +13,10 @@ export const CONSENTIMIENTO = {
 const SINO: [string, string][] = [['si', 'Sí'], ['no', 'No']];
 
 export const TAMIZAJE: Pregunta[] = [
-  { id: 'edad', tipo: 'numero', texto: '¿Cuántos años tienes?', min: 10, max: 99 },
-  { id: 'universitario', tipo: 'unica', texto: '¿Eres estudiante universitario actualmente?', opciones: SINO },
+  { id: 'edad', tipo: 'numero', texto: '¿Cuántos años tienes?', min: 10, max: 99, desplegable: true },
+  { id: 'universitario', tipo: 'unica', texto: '¿Eres estudiante universitario actualmente?', opciones: SINO, desplegable: true },
   {
-    id: 'frecuencia', tipo: 'unica', texto: '¿Con qué frecuencia juegas videojuegos?',
+    id: 'frecuencia', tipo: 'unica', texto: '¿Con qué frecuencia juegas videojuegos?', desplegable: true,
     opciones: [
       ['nunca', 'Nunca o casi nunca'], ['mensual', 'Algunas veces al mes'], ['semanal', 'Algunas veces por semana'],
       ['diaria', 'Todos o casi todos los días'],

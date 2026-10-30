@@ -23,11 +23,12 @@
       .punto { flex: 1; text-align: center; cursor: pointer; }
       .punto input { display: block; margin: 0 auto 2px; width: 20px; height: 20px; }
       .anclas { display: flex; justify-content: space-between; color: #b8c0d0; font-size: 15px; margin-top: 4px; }
-      input[type=number], textarea { width: 100%; box-sizing: border-box; padding: 8px; font: inherit; color: #fff; background: #0b0e14; border: 1px solid #4a5468; border-radius: 4px; }
+      input[type=number], select, textarea { width: 100%; box-sizing: border-box; padding: 8px; font: inherit; color: #fff; background: #0b0e14; border: 1px solid #4a5468; border-radius: 4px; }
       input[type=number] { max-width: 140px; }
+      select { max-width: 320px; }
       button { font: inherit; font-weight: 600; padding: 10px 18px; color: #000; background: #7cfc00; border: 0; border-radius: 6px; cursor: pointer; }
       button.secundario { color: #f1f1f1; background: #3a4357; }
-      button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #ffd60a; outline-offset: 2px; }
+      button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #ffd60a; outline-offset: 2px; }
       .botones { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
       .error { color: #ff8a8a; min-height: 1.5em; }
       .nivel { text-align: center; }
